@@ -21,7 +21,10 @@ architecture, animations, and Provider for state management. Built as part of a 
 - 🌑 Dark mode with persistent toggle (SharedPreferences)
 - 📥 Offline caching (SharedPreferences)
 - 🔄 Infinite scroll (lazy loading)
-- 🧰 Filter products by category (dropdown)
+- 🧰 Filter products by category (choice chip)
+- 📩 Share product (title,description & price)
+- ❤️ Heart products (save for later)
+- 🛒 Add product to shoping cart
 
 ---
 
