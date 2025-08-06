@@ -32,7 +32,7 @@ class ProductDetailPage extends StatelessWidget {
           product.title ?? "No title available.",
           style: Theme.of(
             context,
-          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
@@ -292,8 +292,11 @@ class ProductDetailPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   child: CachedNetworkImage(
                     imageUrl: 'https://picsum.photos/80/80?random=$index',
+                    progressIndicatorBuilder: (context, url, progress) => CircularProgressIndicator(value: progress.progress??0.1,),
                     width: 60,
                     height: 60,
+                    errorWidget: (context, url, error) =>
+                        Icon(Icons.error, color: Colors.red),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -344,9 +347,12 @@ class ProductDetailPage extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(12),
                 ),
-                child: Image.network(
-                  'https://picsum.photos/140/120?random=$index',
+                child: CachedNetworkImage(
+                  imageUrl: 'https://picsum.photos/140/120?random=$index',
+                  progressIndicatorBuilder: (context, url, progress) => CircularProgressIndicator(value: progress.progress??0.1,),
                   fit: BoxFit.cover,
+                  errorWidget: (context, url, error) =>
+                      Icon(Icons.error, color: Colors.red),
                   width: double.infinity,
                 ),
               ),

@@ -60,6 +60,11 @@ class ProductCard extends StatelessWidget {
                                 "https://picsum.photos/140/120?random=0",
                             fit: BoxFit.contain,
                             height: 120,
+                            progressIndicatorBuilder:
+                                (context, url, progress) =>
+                                    CircularProgressIndicator(
+                                      value: progress.progress ?? 0.1,
+                                    ),
                             errorWidget: (_, __, ___) => const Icon(
                               Icons.broken_image,
                               size: 40,
@@ -141,7 +146,9 @@ class ProductCard extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
                                   ),
                                 ),
                                 const SizedBox(width: 4),

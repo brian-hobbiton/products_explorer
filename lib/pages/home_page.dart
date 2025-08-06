@@ -77,14 +77,14 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   spacing: 10,
                   children: [
-                    if(!provider.isLoading)
-                    ChoiceChip(
-                      label: Text("All"),
-                      selected: provider.selectedCategory == null,
-                      onSelected: (value) {
-                        provider.setCategory(null);
-                      },
-                    ),
+                    if (provider.categories.isNotEmpty)
+                      ChoiceChip(
+                        label: Text("All"),
+                        selected: provider.selectedCategory == null,
+                        onSelected: (value) {
+                          provider.setCategory(null);
+                        },
+                      ),
                     ...provider.categories.map(
                       (e) => ChoiceChip(
                         onSelected: (value) {
@@ -104,13 +104,24 @@ class _HomePageState extends State<HomePage> {
                   if (provider.isLoading) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (provider.error != null) {
-                    return Center(child: Text('Error: ${provider.error}'));
+                    if (!provider.error!.contains('offline')) {
+                      return Center(child: Text('Error: ${provider.error}'));
+                    }
                   } else if (provider.products.isEmpty) {
                     return const Center(child: Text('No products available.'));
                   }
 
                   return Column(
                     children: [
+                      if (provider.error != null &&
+                          provider.error!.contains('offline'))
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            provider.error!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
                       Expanded(
                         child: GridView.builder(
                           controller: _scrollController,

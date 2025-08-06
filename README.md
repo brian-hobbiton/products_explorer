@@ -68,8 +68,8 @@ lib/
 1. Clone this repo:
 
 ```bash
-   git clone https://github.com/your-username/product-explorer.git
-   cd product-explorer
+   git clone https://github.com/brian-hobbiton/products_explorer
+   cd products-explorer
 ```
 
 2. Get dependeces:

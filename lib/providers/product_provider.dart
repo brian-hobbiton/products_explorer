@@ -131,5 +131,6 @@ class ProductProvider extends ChangeNotifier {
 
   void refresh() {
     loadProducts();
+    fetchCategories();
   }
 }
